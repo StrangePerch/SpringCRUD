@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    Title: <span th:text="${tag.name}"></span>
+</div>
+<div>
+    <a th:href="@{/tag/{id}/edit(id=${tag.id})}">Edit</a>
+</div>
+<div>
+    <form th:method="delete" th:action="@{/tag/{id}(id=${tag.id})}">
+        <input type="submit" value="Delete"/>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="put" th:action="@{/post/{id}(id=${post.id})}" th:object="${post}">
+    <div>
+        <label>
+            Title:
+            <input type="text" name="title" th:field="*{title}"/>
+        </label>
+        <label>
+            Content:
+            <input type="text" name="content" th:value="*{content}"/>
+        </label>
+    </div>
+    <div>
+        <label>
+            Tags:
+            <select th:field="*{tags}" multiple="multiple">
+                <option th:each="tag: ${tags}"
+                        th:field="*{tags}"
+                        th:value="${{tag}}"
+                        th:text="${tag.name}">
+                </option>
+            </select>
+        </label>
+    </div>
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

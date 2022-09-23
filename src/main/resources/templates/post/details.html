@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        Title: <span th:text="${post.title}"></span>
+    </div>
+    <div>
+        Content: <span th:text="${post.content}"></span>
+    </div>
+    <div>
+        <a th:href="@{/post/{id}/edit(id=${post.id})}">Edit</a>
+    </div>
+    <div>
+        Tags:
+        <ul th:each="tag: ${post.tags}">
+            <li>
+                <a th:href="@{/tag/{id}(id=${tag.id})}" th:text="${tag.name}"></a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        Comments:
+        <ul th:each="comment: ${post.comments}">
+            <li>
+                <div th:text="${comment.content}"></div>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <form method="post" th:action="@{/comment/{postId}(postId=${{post}})}">
+            <label>
+                New comment:
+                <input type="text" name="content"/>
+            </label>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div>
+        <form th:method="delete" th:action="@{/post/{id}(id=${post.id})}">
+            <input type="submit" value="Delete"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
